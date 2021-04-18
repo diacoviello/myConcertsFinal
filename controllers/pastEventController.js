@@ -1,6 +1,6 @@
 const db = require("../models");
 
-// Defining methods for the bookController
+// Defining methods for the Controller
 module.exports = {
   findAll: function (req, res) {
     db.PastEvent.find(req.query)
@@ -28,6 +28,13 @@ module.exports = {
     db.PastEvent.findById({ _id: req.params.id })
       .then((dbModel) => dbModel.remove())
       .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
+  getArtistTotal: function (req, res) {
+      db.PastEvent.aggregate([
+          { $group: { _id: "$artist_name", count: { $sum: 1 } } },
+        ])
+      .then(console.log(req.body))
       .catch((err) => res.status(422).json(err));
   },
 };

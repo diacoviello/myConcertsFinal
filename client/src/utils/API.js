@@ -36,5 +36,8 @@ export default {
   savePastEvent: function (pastEventData) {
     console.log(pastEventData)
     return axios.post("/api/pastevents", pastEventData);
+  },
+  getArtistTotal: function () {
+    return axios.get("api/stats");
   }
 };

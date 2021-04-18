@@ -6,7 +6,9 @@ import UserLogin from "./pages/UserLogin";
 import UserSignup from "./pages/UserSignup";
 import User2Profile from "./pages/User2Profile";
 import PastEvents from "./pages/PastEvents";
+import Stats from "./pages/Stats";
 import './App.css';
+import * as ReactBootStrap from "react-bootstrap";
 
 function App() {
   return (
@@ -14,7 +16,7 @@ function App() {
       <div>
         <Switch>
           <Route exact path="/" component={Home}>
-            {/* <Home /> */}
+            <Home />
           </Route>
           <Route exact path={["/searchresult"]}>
             <SearchResults />
@@ -33,6 +35,9 @@ function App() {
           </Route>
           <Route exact path={["/pastevents"]}>
             <PastEvents />
+          </Route>
+          <Route exact path={["/stats"]}>
+            <Stats />
           </Route>
           {/* <Route exact path="/events/:id">
                     </Route> */}

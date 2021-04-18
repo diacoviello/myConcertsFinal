@@ -1,8 +1,10 @@
 const router = require("express").Router();
 const pastEventController = require("../../controllers/pastEventController");
 
-router.route("/")
+router
+  .route("/")
   .get(pastEventController.findAll)
+  .get(pastEventController.getArtistTotal)
   .post(pastEventController.create);
 
 router
