@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import Axios from "axios";
+import API from "../utils/API";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -64,7 +66,31 @@ const useStyles = makeStyles((theme) => ({
 
 export default function UserLogin() {
   const classes = useStyles();
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+  
 
+  const handleSignup = () => {
+    API.signup({
+      email: registerEmail,
+      password: registerPassword,
+    })
+      .then(console.log("success!!!!"))
+      .catch((err) => console.log(err));
+  };
+  // const register = () => {
+  //   Axios({
+  //     method: "POST",
+  //     data: {
+  //       email: registerEmail,
+  //       password: registerPassword,
+  //     },
+  //     withCredentials: true,
+  //     // url: "http://localhost:3001/api/signup",
+  //   }).then((res) => console.log(res));
+  // };
+  console.log(registerEmail);
+  console.log(registerPassword);
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -88,6 +114,7 @@ export default function UserLogin() {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={(e) => setRegisterEmail(e.target.value)}
             />
             <TextField
               variant="outlined"
@@ -99,6 +126,7 @@ export default function UserLogin() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={(e) => setRegisterPassword(e.target.value)}
             />
             <Button
               type="submit"
@@ -106,7 +134,8 @@ export default function UserLogin() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              href="/userprofile"
+              href="/login"
+              onClick={() => handleSignup()}
             >
               Sign Up
             </Button>

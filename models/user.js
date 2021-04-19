@@ -12,16 +12,16 @@ const UserSchema = new Schema({
       type: String, 
       required: true, 
     },
-    Events: [
+    Event: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Events"
+        ref: "Event"
       }
     ],
-    pastevents: [
+    PastEvent: [
       {
         type: Schema.Types.ObjectId,
-        ref: "PastEvents"
+        ref: "PastEvent"
       }
     ]
 });
@@ -47,6 +47,6 @@ UserSchema.pre("save", function(next) {
   }
 })
 
-const User = mongoose.model("User", UserSchema)
+const User = mongoose.model("user", UserSchema)
 
 module.exports = User;

@@ -5,6 +5,7 @@ const eventSchema = new Schema({
   artist_name: { type: String, required: true },
   location: { type: String, required: true },
   venue_name: { type: String, required: true },
+  datetime: { type: String, required: true },
   date: { type: String, required: true },
   time: { type: String, required: true },
   event_url: { type: String, required: true },
@@ -14,7 +15,7 @@ const eventSchema = new Schema({
   artistImg: { type: String, required: false, unique: false }
 });
 
-const Event = mongoose.model("event", eventSchema);
+const Event = mongoose.model("Event", eventSchema);
 
 module.exports = Event;
 

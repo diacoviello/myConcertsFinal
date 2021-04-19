@@ -3,7 +3,9 @@ const db = require("../models");
 // Defining methods for the Controller
 module.exports = {
   findAll: function (req, res) {
-    db.PastEvent.find(req.query)
+    console.log("req: ", db.PastEvent);
+    db.PastEvent.find(req.query).sort({datetime: -1})
+    // find(req.query).sort({datetime: -1})
       .then((dbModel) => res.json(dbModel))
       .then(console.log(req.body))
       .catch((err) => res.status(422).json(err));
@@ -15,6 +17,7 @@ module.exports = {
   },
   create: function (req, res) {
     db.PastEvent.create(req.body)
+    .then(({_id}) => db.User.findOneAndUpdate({}, { $push: { PastEvent: _id } }, { new: true }))
       .then((dbModel) => res.json(dbModel))
       .then(console.log(req.body))
       .catch((err) => res.status(422).json(err));
@@ -28,13 +31,6 @@ module.exports = {
     db.PastEvent.findById({ _id: req.params.id })
       .then((dbModel) => dbModel.remove())
       .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
-  },
-  getArtistTotal: function (req, res) {
-      db.PastEvent.aggregate([
-          { $group: { _id: "$artist_name", count: { $sum: 1 } } },
-        ])
-      .then(console.log(req.body))
       .catch((err) => res.status(422).json(err));
   },
 };

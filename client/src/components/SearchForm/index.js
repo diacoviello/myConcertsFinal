@@ -73,7 +73,8 @@ function SearchForm(props) {
           style={{ backgroundColor: "grey",  }}
         >
           <Button
-            onClick={props.handleFormSubmit}
+            onClick={props.handleFormSubmit }
+            // onClick={props.handleLoggedIn}
             size="small"
             variant="contained"
             color="primary"

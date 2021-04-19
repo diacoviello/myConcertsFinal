@@ -1,7 +1,9 @@
 const router = require("express").Router();
-const statsController = require("../../controllers/statsController");
+const artistsController = require("../../controllers/artistsController");
+const statesController = require("../../controllers/statesController");
 
-router.route("/")
-    .get(statsController.getArtistTotal);
+router.route("/artists").get(artistsController.getArtistTotal);
+
+router.route("/states").get(statesController.getStateTotal);
 
 module.exports = router;

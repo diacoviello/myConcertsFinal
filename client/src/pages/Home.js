@@ -1,5 +1,6 @@
 import React from "react";
 import MainNav from "../components/MainNav";
+import Footer from "../components/Footer";
 import HomeSearch from "../components/HomeSearch";
 
 function Home() {
@@ -7,6 +8,7 @@ function Home() {
       <div>
         <MainNav />
         <HomeSearch />
+        <Footer />
       </div>
     );
 }

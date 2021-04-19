@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import API from "../utils/API";
+import Axios from "axios";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -64,6 +66,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function UserLogin() {
   const classes = useStyles();
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  
+  const handleLogin = () => {
+    API.login({
+      email: loginEmail,
+      password: loginPassword,
+    })
+      .then(console.log("success!!!!"))
+      .catch((err) => console.log(err));
+  };
+  console.log(loginEmail);
+  console.log(loginPassword);
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -88,6 +103,7 @@ export default function UserLogin() {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={(e) => setLoginEmail(e.target.value)}
             />
             <TextField
               variant="outlined"
@@ -99,6 +115,7 @@ export default function UserLogin() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={(e) => setLoginPassword(e.target.value)}
             />
             <Button
               type="submit"
@@ -106,7 +123,8 @@ export default function UserLogin() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              href="/userprofile"
+              href="/user"
+              onClick={() => handleLogin()}
             >
               Log In
             </Button>

@@ -23,7 +23,6 @@ router.post("/login", passport.authenticate("local"), (req, res) => {
   console.log("POST /api/login - req.user: ", req.user);
   const userInfo = {
     id: req.user._id,
-    name: req.user.name,
     email: req.user.email
   };
   res.json(userInfo);

@@ -31,6 +31,8 @@ export default function MainNav() {
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
+            component="a"
+            href="/"
           >
             <HomeIcon />
           </IconButton>

@@ -4,7 +4,6 @@ const pastEventController = require("../../controllers/pastEventController");
 router
   .route("/")
   .get(pastEventController.findAll)
-  .get(pastEventController.getArtistTotal)
   .post(pastEventController.create);
 
 router
