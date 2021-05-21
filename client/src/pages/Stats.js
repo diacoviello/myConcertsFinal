@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Map, GoogleApiWrapper } from "google-maps-react";
 import { BarElement } from "react-chartjs-2";
 import axios from "axios";
 import clsx from "clsx";
@@ -6,7 +7,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
 import Box from "@material-ui/core/Box";
-import Button from "@material-ui/core/Button";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import List from "@material-ui/core/List";
@@ -32,6 +32,8 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import API from "../utils/API";
 import ArtistsTotal from "../components/ArtistsTotal";
 import StatesTotal from "../components/StatesTotal";
+import VenuesTotal from "../components/VenuesTotal";
+// import MapStats from "../components/MapStats";
 
 function Copyright() {
   return (
@@ -124,6 +126,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     overflow: "auto",
     flexDirection: "column",
+    marginTop: 15,
   },
   fixedHeight: {
     height: 240,
@@ -155,7 +158,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PastEvents() {
+const mapStyles = {
+  width: "100%",
+  height: "100%",
+};
+
+export default function Stats() {
   const classes = useStyles();
   const [events, setEvents] = React.useState([]);
   const [open, setOpen] = React.useState(true);
@@ -268,30 +276,50 @@ export default function PastEvents() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <Grid container justify="center">
-            <Paper className={classes.resPaper} style={{ marginBottom: 15}}>
-              <Typography variant="h4" style={{alignItems: "center"}}>
-                <strong>WOW! You have attended {events.length} concerts!</strong>
-              </Typography>
-            </Paper>
-            
+          <Grid container justify="center" spacing={4}>
+            <Grid item xs={6}>
+              <Paper className={classes.resPaper} style={{ marginBottom: 15 }}>
+                <Typography variant="h4" style={{ alignItems: "center" }}>
+                  <strong>{events.length} concerts attended!</strong>
+                </Typography>
+              </Paper>
+            </Grid>
+            <Grid item xs={6}>
+              <Paper className={classes.resPaper} style={{ marginBottom: 15 }}>
+                <Typography variant="h4" style={{ alignItems: "center" }}>
+                  <strong>Look where you've been!</strong>
+                </Typography>
+              </Paper>
+            </Grid>
+          </Grid>
+          <Grid container justify="space-between" spacing={3}>
+            {/* Artists Total card */}
             <Grid item xs={6}>
               <Paper className={classes.paper}>
                 <ArtistsTotal />
               </Paper>
             </Grid>
+
+            {/* States Total Card  */}
             <Grid item xs={6}>
               <Paper className={classes.paper}>
                 <StatesTotal />
               </Paper>
             </Grid>
-            <Grid
-              item
-              xs={9}
-              spacing={3}
-              justify="center"
-              style={{ margin: 8 }}
-            ></Grid>
+          </Grid>
+          <Grid container>
+            <Grid item xs={12}>
+              <Paper className={classes.resPaper}>
+                <Typography variant="h4">
+                  <strong>Look at all the venues you've been to!</strong>
+                </Typography>
+              </Paper>
+            </Grid>
+            <Grid item xs={12}>
+              <Paper className={classes.paper}>
+                <VenuesTotal />
+              </Paper>
+            </Grid>
           </Grid>
           <Box pt={4}>
             <Copyright />

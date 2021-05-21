@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import API from "../../utils/API";
 
-const ArtistsTotal = () => {
+const VenuesTotal = () => {
   const [chartData, setChartData] = useState({});
   const [total, setTotal] = useState([]);
   const [showsNum, setShowsNum] = useState([]);
-  const [artistName, setArtistName] = useState([]);
+  const [venueName, setVenueName] = useState([]);
 
   // console.log(total);
   // console.log(artistName);
@@ -14,24 +14,24 @@ const ArtistsTotal = () => {
   //   console.log(chartData);
 
   const chart = () => {
-    let artist = [];
+    let venues = [];
     let shows = [];
 
-    API.getArtistTotal()
+    API.getVenuesTotal()
       .then((res) => {
         setShowsNum(res.data);
         console.log(res.data);
         for (const dataObj of res.data) {
-          artist.push(dataObj._id);
+          venues.push(dataObj._id);
           shows.push(dataObj.count);
 
-          console.log(artist, shows);
+          console.log(venues, shows);
         }
-        setArtistName(artist);
+        setVenueName(venues);
         setTotal(shows);
 
         setChartData({
-          labels: artistName,
+          labels: venueName,
           datasets: [
             {
               data: total,
@@ -54,10 +54,10 @@ const ArtistsTotal = () => {
     <div>
       <Bar
         data={{
-          labels: artistName,
+          labels: venueName,
           datasets: [
             {
-              label: "myArtists",
+              label: "myVenues",
               data: total,
               backgroundColor: [
                 "#B21F00",
@@ -98,7 +98,7 @@ const ArtistsTotal = () => {
         options={{
           title: {
             display: true,
-            text: "myConcerts by Artist",
+            text: "myConcerts by Venue",
             fontSize: 32,
           },
           maintainAspectRatio: false,
@@ -122,4 +122,4 @@ const ArtistsTotal = () => {
   );
 };
 
-export default ArtistsTotal;
+export default VenuesTotal;

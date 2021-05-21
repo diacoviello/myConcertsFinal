@@ -81,8 +81,12 @@ class SearchResults extends Component {
             const date = event.datetime.slice(0, 10);
             const time = event.datetime.slice(11, 16);
             const eventUrl = event.url;
-            const latitude = event.venue.latitude;
-            const longitude = event.venue.longitude;
+            const latLng =
+              Math.round(10000 * event.venue.latitude) / 10000 +
+              ", " +
+              Math.round(10000 * event.venue.longitude) / 10000;
+            const latitude = Math.round(10000 * event.venue.latitude) / 10000;
+            const longitude = Math.round(10000 * event.venue.longitude) / 10000;
             const artistImg = thumbImg;
 
             const eventObj = {
@@ -94,6 +98,7 @@ class SearchResults extends Component {
               date: moment(date).format("dddd, MMMM Do YYYY"),
               time: moment(time, "HH:mm").format("h:mm a"),
               eventUrl: eventUrl,
+              latLng: latLng,
               longitude: longitude,
               latitude: latitude,
               artistImg: artistImg,
@@ -128,8 +133,12 @@ class SearchResults extends Component {
             const date = event.datetime.slice(0, 10);
             const time = event.datetime.slice(11, 16);
             const eventUrl = event.url;
-            const latitude = event.venue.latitude;
-            const longitude = event.venue.longitude;
+            const latLng =
+              Math.round(10000 * event.venue.latitude) / 10000 +
+              ", " +
+              Math.round(10000 * event.venue.longitude) / 10000;
+            const latitude = Math.round(10000 * event.venue.latitude) / 10000;
+            const longitude = Math.round(10000 * event.venue.longitude) / 10000;
             const artistImg = pastImg;
             console.log(artistImg);
 
@@ -143,6 +152,7 @@ class SearchResults extends Component {
               date: moment(date).format("dddd, MMMM Do YYYY"),
               time: moment(time, "HH:mm").format("h:mm a"),
               eventUrl: eventUrl,
+              latLng: latLng,
               longitude: longitude,
               latitude: latitude,
               artistImg: artistImg,
@@ -169,6 +179,7 @@ class SearchResults extends Component {
         date: event.date,
         time: event.time,
         event_url: event.eventUrl,
+        latLng: event.latLng,
         longitude: event.longitude,
         latitude: event.latitude,
         eventId: event.id,
@@ -186,6 +197,7 @@ class SearchResults extends Component {
         date: event.date,
         time: event.time,
         event_url: event.eventUrl,
+        latLng: event.latLng,
         longitude: event.longitude,
         latitude: event.latitude,
         eventId: event.id,

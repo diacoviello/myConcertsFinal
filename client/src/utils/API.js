@@ -1,7 +1,7 @@
 import axios from "axios";
 const BASEURL = "https://rest.bandsintown.com/v4/artists/";
 const APIKEY = "/events/?app_id=451f31b2808001d069daed45c32a9dac";
-const PAST = "&date=past"
+const PAST = "&date=past";
 
 export default {
   getEvent: function (query) {
@@ -13,7 +13,7 @@ export default {
     return axios.get(BASEURL + query + APIKEY + PAST);
   },
 
-  getSavedEvents: function() {
+  getSavedEvents: function () {
     return axios.get("/api/events");
   },
 
@@ -43,20 +43,23 @@ export default {
   getStatesTotal: function () {
     return axios.get("api/stats/states");
   },
+  getVenuesTotal: function () {
+    return axios.get("api/stats/venues");
+  },
   signup: function (signupData) {
-    console.log(signupData)
+    console.log(signupData);
     return axios.post("/api/signup", signupData);
   },
   login: function (loginData) {
-    console.log(loginData)
+    console.log(loginData);
     return axios.post("/api/login", loginData);
-  }, 
+  },
   isLoggedIn: function (loginData) {
-    console.log(loginData)
+    console.log(loginData);
     return axios.get("/api/login", loginData);
   },
   logout: function () {
-    console.log()
+    console.log();
     return axios.post("/api/logout");
-  }
+  },
 };

@@ -8,9 +8,11 @@ import User2Profile from "./pages/User2Profile";
 import PastEvents from "./pages/PastEvents";
 import Stats from "./pages/Stats";
 import './App.css';
-import * as ReactBootStrap from "react-bootstrap";
 
 function App() {
+
+  console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
+  
   return (
     <Router>
       <div>
