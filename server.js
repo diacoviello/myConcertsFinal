@@ -6,7 +6,6 @@ const MongoStore = require("connect-mongo");
 const session = require("express-session");
 const routes = require("./routes");
 
-
 const app = express();
 const PORT = process.env.PORT || 3001;
 app.use(logger("dev"));
@@ -17,22 +16,17 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("./client/build"));
 }
 
-
 app.use(
   session({
     secret: "super secret",
-    store: MongoStore.create ({ mongoUrl: "mongodb://localhost/myConcertsDB"
-    }),
+    store: MongoStore.create({ mongoUrl: "mongodb://localhost/myConcertsDB" }),
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
   })
 );
 
-
 app.use(passport.initialize());
 app.use(passport.session());
-
-
 
 app.use(routes);
 
