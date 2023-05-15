@@ -2,6 +2,17 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcryptjs");
 
+// passport
+// const passportLocalMongoose = require("passport-local-mongoose")
+
+const Session = new Schema({
+  refreshToken: {
+    type: String,
+    default: "",
+  },
+})
+
+
 const UserSchema = new Schema({
     email: { 
         type: String, 

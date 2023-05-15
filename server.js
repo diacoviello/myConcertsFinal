@@ -37,14 +37,17 @@ app.use(passport.session());
 
 app.use(routes);
 
-mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost:27017/myConcertsDB",
-  {
-    useCreateIndex: true,
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
+// mongo
+const url = process.env.MONGO_DB_CONNECTION_STRING;
+mongoose.connect(url, {
+  useCreateIndex: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}).then(db => {
+  console.log("connected to db")
+}).catch(err => {
+  console.log(err);
+});
 
 app.listen(PORT, () =>
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`)
